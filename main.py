@@ -11,7 +11,7 @@ TODAY = date.today().strftime("%Y-%m-%d")
 
 st.title("Stock Symphony 🚀")
 
-stocks = ("AAPL", "GOOGL", "MSFT", "TSLA")
+stocks = ("AAPL", "GOOGL", "MSFT", "TSLA", "GME")
 selected_stocks = st.selectbox("Select dataset for prediction", stocks)
 
 n_years = st.slider("Years of prediction:", 1, 4)
@@ -51,4 +51,10 @@ forecast = m.predict(future)
 st.subheader('Forecast data')
 st.write(forecast.tail())
 
-# fig1 = plot_plotly(m, forecast)
+st.write('Forcast data')
+fig1 = plot_plotly(m, forecast)
+st.plotly_chart(fig1)
+
+st.write('Forcast components')
+fig2 = m.plot_components(forecast)
+st.write(fig2)
